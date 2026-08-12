@@ -5,20 +5,12 @@ services:
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-sf", "http://localhost:5003/health-check"]
-      interval: 10s
+      interval: 15s
       timeout: 5s
-      retries: 10
-      start_period: 180s
+      retries: 20
+      start_period: 300s
     volumes:
       - ./tts/persistent_data/tts_models:/root/tts_data
-    # Раскомментируй, если есть NVIDIA GPU + nvidia-container-toolkit:
-    # deploy:
-    #   resources:
-    #     reservations:
-    #       devices:
-    #         - driver: nvidia
-    #           count: 1
-    #           capabilities: [gpu]
 
   tts-api:
     container_name: tts-api
