@@ -91,7 +91,7 @@ def text_to_speech_handler(endpoint, voice, text, filter_complex, pitch, special
     response.headers['audio-length'] = length
     return response
 
-@app.route("/tts")
+@app.route("/tts", methods=["GET", "POST"])
 def text_to_speech_normal():
     if authorization_token != request.headers.get("Authorization", ""):
         abort(401)
@@ -109,7 +109,7 @@ def text_to_speech_normal():
     filter_complex = request.args.get("filter", '')
     return text_to_speech_handler("generate-tts", voice, text, filter_complex, pitch, special_filters)
 
-@app.route("/tts-blips")
+@app.route("/tts-blips", methods=["GET", "POST"])
 def text_to_speech_blips():
     if authorization_token != request.headers.get("Authorization", ""):
         abort(401)
