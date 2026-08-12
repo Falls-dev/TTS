@@ -148,7 +148,5 @@ def pitch_available():
     return make_response("Pitch available", 200)
 
 if __name__ == "__main__":
-    if os.getenv('TTS_LD_LIBRARY_PATH', "") != "":
-        os.putenv('LD_LIBRARY_PATH', os.getenv('TTS_LD_LIBRARY_PATH'))
     from waitress import serve
-    serve(app, host="0.0.0.0", port=5002, threads=4, backlog=16, connection_limit=32, channel_timeout=15)
+    serve(app, host="0.0.0.0", port=5002, threads=4, backlog=16, connection_limit=32, channel_timeout=120)
