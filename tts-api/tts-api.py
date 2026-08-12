@@ -1,6 +1,5 @@
 import os
 import io
-import gc
 import subprocess
 import requests
 import re
@@ -136,7 +135,6 @@ def voices_list():
 
 @app.route("/health-check")
 def tts_health_check():
-    gc.collect()
     return "OK", 200
 
 @app.route("/pitch-available")
